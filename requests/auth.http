@@ -1,0 +1,19 @@
+### SignIn
+POST http://localhost:3000/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "user@domain.com",
+  "password": "password"
+}
+
+### SignUp
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "User name",
+  "email": "user@domain.com",
+  "password": "password",
+  "roles": ["admin", "moderator"]
+}
