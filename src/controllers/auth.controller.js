@@ -1,27 +1,40 @@
-import User from '../models/User';
+import Users from '../models/Users';
+import Roles from '../models/Roles';
+import User_Roles from '../models/User_Roles';
 import jwt from 'jsonwebtoken';
 import config from '../config';
-import Role from '../models/Role';
 
-export const signUp = async (req, res) => {
+export const signUp = async (request, response) => {
     
-    const {username, email, password, roles} = req.body;
+    const {username, email, password, roles} = request.body;
     
-    const newUser = new User({
+    const savedUser = await Users.create({
         username,
         email,
-        password: await User.encryptPassword(password)
+        password: await Users.encryptPassword(password)
     })
     
+    let insertRoles
+    
     if (roles) {
-        const foundRoles = await Role.find({name: {$in: roles}});
-        newUser.roles = foundRoles.map(role => role._id);
+        
+        const foundRoles = await Roles.findAll({where: {name: roles}});
+        insertRoles = foundRoles.map(role => User_Roles.create({
+            user_id: savedUser.id,
+            role_id: role.id
+        }));
+        
     } else {
-        const role = await Role.findOne({name: 'user'});
-        newUser.roles = [role._id];
+        
+        const role = await Roles.findOne({where: {name: 'user'}});
+        insertRoles = [User_Roles.create({
+            user_id: savedUser.id,
+            role_id: role.id
+        })]
+        
     }
     
-    const savedUser = await newUser.save();
+    await Promise.all(insertRoles);
     
     const token = jwt.sign(
         {id: savedUser._id},
@@ -29,19 +42,25 @@ export const signUp = async (req, res) => {
         {expiresIn: 86400} // 1 day in seconds
     )
     
-    res.json({token});
+    response.json({token});
     
 };
 
 export const signIn = async (request, response) => {
-    
-    const userFound = await User.findOne({email: request.body.email}).populate('roles');
+
+    // response.header("Access-Control-Allow-Origin", "*");
+    // response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    // response.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
+    if ('OPTIONS' === request.method) return response.status(200).json('');
+
+    const userFound = await Users.findOne({where: {email: request.body.email}});
     if (!userFound) return response.status(400).json({message: 'User not found'});
     
-    const matchPassword = await User.comparePassword(request.body.password, userFound.password);
+    const matchPassword = await Users.comparePassword(request.body.password, userFound.password);
     if (!matchPassword) return response.status(401).json({token: null, message: 'Invalid password'});
     
-    const token = jwt.sign({id: userFound._id}, config.SECRET, {
+    const token = jwt.sign({id: userFound.id}, config.SECRET, {
         expiresIn: 86400, // 1 day in seconds
     })
     

@@ -1,10 +1,10 @@
-import Role from '../models/Role';
+import Roles from '../models/Roles';
 
 export const createRoles = async () => {
     
     try {
         
-        const count = await Role.estimatedDocumentCount();
+        const count = await Roles.count();
         
         if (count > 0) {
 
@@ -14,13 +14,11 @@ export const createRoles = async () => {
         }
 
         console.log('Creating roles...');
-        const values = await Promise.all([
-            new Role({name: 'user'}).save(),
-            new Role({name: 'moderator'}).save(),
-            new Role({name: 'admin'}).save()
+        await Promise.all([
+            Roles.create({name: 'user'}),
+            Roles.create({name: 'moderator'}),
+            Roles.create({name: 'admin'})
         ])
-    
-        console.log(values);
     
     } catch (error) {
 

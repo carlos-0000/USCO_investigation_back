@@ -1,12 +1,16 @@
-import {ROLES} from '../models/Role';
-import User from '../models/User';
+import {ROLES} from '../models/Roles';
+import Users from '../models/Users';
 
 export const checkDuplicateUsernameOrEmail = async (request, response, next) => {
+
+    // response.header("Access-Control-Allow-Origin", "*");
+    // response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    // response.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   
-    const user = await User.findOne({username: request.body.username});
+    const user = await Users.findOne({where: {username: request.body.username}});
     if (user) return response.status(400).json({message: `The username "${request.body.username}" already exist`});
     
-    const email = await User.findOne({email: request.body.email});
+    const email = await Users.findOne({where: {email: request.body.email}});
     if (email) return response.status(400).json({message: `The email "${request.body.email}" already exist`});
     
     next();
@@ -14,6 +18,10 @@ export const checkDuplicateUsernameOrEmail = async (request, response, next) => 
 }
 
 export const checkRolesExisted = (request, response, next) => {
+
+    // response.header("Access-Control-Allow-Origin", "*");
+    // response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    // response.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     
     const roles = request.body.roles;
     

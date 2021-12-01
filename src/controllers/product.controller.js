@@ -1,46 +1,48 @@
-import Product from '../models/Product';
+import Product from '../models/Products';
 
-export const createProducts = async (req, res) => {
-
-    const {name, category, price, imgURL} = req.body;
-
-    const newProduct = new Product({name, category, price, imgURL});
-
-    const productSaved = await newProduct.save();
+export const createProducts = async (request, response) => {
     
-    res.status(201).json(productSaved);
+    const {name, category, price, imgURL} = request.body;
+
+    const productSaved = await Product.create({name, category, price, imgURL});
+
+    response.status(201).json(productSaved);
 
 }
 
-export const getProducts = async (req, res) => {
+export const getProducts = async (request, response) => {
     
-    const products = await Product.find();
+    const products = await Product.findAll();
     
-    res.json(products);
+    response.json(products);
 
 }
 
-export const getProductById = async (req, res) => {
+export const getProductById = async (request, response) => {
 
-    const product = await Product.findById(req.params.productId);
+    const product = await Product.findByPk(request.params['productId']);
     
-    res.status(200).json(product);
+    response.status(200).json(product);
 
 }
 
-export const updateProductById = async (req, res) => {
+export const updateProductById = async (request, response) => {
 
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, {
-        new: true
+    const productId = request.params['productId']
+    
+    await Product.update(request.body, {
+        where: {id: productId}
     });
     
-    res.status(200).json(updatedProduct);
+    const updatedProduct = await Product.findOne({where: {id: productId}});
+    
+    response.status(200).json(updatedProduct);
 
 }
 
-export const deleteProductById = async (req, res) => {
+export const deleteProductById = async (request, response) => {
 
-    await Product.findByIdAndDelete(req.params.productId);
-    res.status(204).json();
+    await Product.destroy({where: {id: request.params['productId']}});
+    response.status(204).json();
 
 }

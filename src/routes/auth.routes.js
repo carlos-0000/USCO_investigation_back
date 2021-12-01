@@ -7,5 +7,6 @@ const {checkDuplicateUsernameOrEmail, checkRolesExisted} = verifySignUp;
 
 router.post('/signup', [checkDuplicateUsernameOrEmail, checkRolesExisted], authCtrl.signUp);
 router.post('/signin', authCtrl.signIn);
+// router.options('/signin', authCtrl.signIn);
 
 export default router;
