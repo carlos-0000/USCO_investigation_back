@@ -9,6 +9,11 @@ const Users = db.define('Users', {
     username: {type: DataTypes.STRING},
     email: {type: DataTypes.STRING},
     password: {type: DataTypes.STRING},
+    nombres: {type: DataTypes.STRING},
+    apellidos: {type: DataTypes.STRING},
+    correoInstitucional: {type: DataTypes.STRING},
+    numeroDocumento: {type: DataTypes.STRING},
+    idCountry: {type: DataTypes.BIGINT},
     
 }, {
     

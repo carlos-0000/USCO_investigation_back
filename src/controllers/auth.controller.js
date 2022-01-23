@@ -6,11 +6,25 @@ import config from '../config';
 
 export const signUp = async (request, response) => {
     
-    const {username, email, password, roles} = request.body;
+    const {
+        email,
+        password,
+        nombres,
+        apellidos,
+        roles,
+        correoInstitucional,
+        numeroDocumento,
+        idCountry
+    } = request.body;
     
     const savedUser = await Users.create({
-        username,
+        username: numeroDocumento,
         email,
+        nombres,
+        apellidos,
+        correoInstitucional,
+        numeroDocumento,
+        idCountry,
         password: await Users.encryptPassword(password)
     })
     

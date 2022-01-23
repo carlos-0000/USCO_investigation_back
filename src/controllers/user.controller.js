@@ -5,7 +5,18 @@ import User_Roles from '../models/User_Roles';
 export const getUsers = async (request, response) => {
 
     const products = await Users.findAll({
-        attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt'],
+        attributes: [
+            'id',
+            'username',
+            'email',
+            'nombres',
+            'apellidos',
+            'correoInstitucional',
+            'numeroDocumento',
+            'idCounty',
+            'createdAt',
+            'updatedAt'
+        ],
         include: [{
             model: User_Roles,
             attributes: ['role_id'],
@@ -20,7 +31,18 @@ export const getUsers = async (request, response) => {
 export const getUserById = async (request, response) => {
 
     const product = await Users.findOne({
-        attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt'],
+        attributes: [
+            'id',
+            'username',
+            'email',
+            'nombres',
+            'apellidos',
+            'correoInstitucional',
+            'numeroDocumento',
+            'idCounty',
+            'createdAt',
+            'updatedAt'
+        ],
         where: {id: request.params.userIdToGet},
         include: [{
             model: User_Roles,
