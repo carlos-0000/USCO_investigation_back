@@ -1,0 +1,5 @@
+### Get all ethnic groups
+GET https://usco.protocolosweb.com/api/ethnicGroups
+
+### Get ethnic group by id
+GET https://usco.protocolosweb.com/api/ethnicGroups/{{ethnicGroupId}}

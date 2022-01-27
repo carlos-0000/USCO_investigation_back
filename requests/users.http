@@ -1,7 +1,7 @@
 ### Get all users
-GET http://localhost:3000/api/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTYzODMzMTc0NSwiZXhwIjoxNjM4NDE4MTQ1fQ.klPWK_9UXyNHdYaQISRNGpIeLpRcab6_X_l9KHTL3sI
+GET https://usco.protocolosweb.com/api/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQzMjY0ODMzfQ.zJ_vMZh5EZ0SXAbdPcNo9sWY97GBM2RvE7ws8E9Pmv4
 
 ### Get user by id
-GET http://localhost:3000/api/users/9
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTYzODMzMTc0NSwiZXhwIjoxNjM4NDE4MTQ1fQ.klPWK_9UXyNHdYaQISRNGpIeLpRcab6_X_l9KHTL3sI
+GET https://usco.protocolosweb.com/api/users/{{userIdToGet}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQzMjY0ODMzfQ.zJ_vMZh5EZ0SXAbdPcNo9sWY97GBM2RvE7ws8E9Pmv4

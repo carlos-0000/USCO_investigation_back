@@ -1,0 +1,5 @@
+### Get all countries
+GET https://usco.protocolosweb.com/api/countries
+
+### Get country by id
+GET https://usco.protocolosweb.com/api/countries/{{countryId}}

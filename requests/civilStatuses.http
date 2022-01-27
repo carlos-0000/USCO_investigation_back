@@ -1,0 +1,5 @@
+### Get all civil statuses
+GET https://usco.protocolosweb.com/api/civilStatuses
+
+### Get civil status by id
+GET https://usco.protocolosweb.com/api/civilStatuses/{{civilStatusId}}

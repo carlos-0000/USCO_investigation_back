@@ -1,0 +1,14 @@
+### Get all municipios
+GET https://usco.protocolosweb.com/api/municipios
+
+### Get municipio by id
+GET https://usco.protocolosweb.com/api/municipios/{{codigoMunicipio}}
+
+### Get all departamentos
+GET https://usco.protocolosweb.com/api/departamentos
+
+### Get departamento by codigoDepartamento
+GET https://usco.protocolosweb.com/api/departamentos/{{codigoDepartamento}}
+
+### Get municipios by codigoDepartamento
+GET https://usco.protocolosweb.com/api/departamentos/{{codigoDepartamento}}/municipios

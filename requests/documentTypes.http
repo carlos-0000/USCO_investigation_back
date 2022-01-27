@@ -1,0 +1,5 @@
+### Get all document types
+GET https://usco.protocolosweb.com/api/documentTypes
+
+### Get document type by id
+GET https://usco.protocolosweb.com/api/documentTypes/{{documentTypeId}}
