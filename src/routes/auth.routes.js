@@ -3,10 +3,9 @@ const router = Router();
 
 import * as authCtrl from '../controllers/auth.controller';
 import {verifySignUp} from '../middlewares';
-const {checkDuplicateUsernameOrEmail, checkRolesExisted} = verifySignUp;
+const {checkDuplicateUsernameOrEmail} = verifySignUp;
 
-router.post('/signup', [checkDuplicateUsernameOrEmail, checkRolesExisted], authCtrl.signUp);
+router.post('/signup', [checkDuplicateUsernameOrEmail], authCtrl.signUp);
 router.post('/signin', authCtrl.signIn);
-// router.options('/signin', authCtrl.signIn);
 
 export default router;

@@ -2,18 +2,17 @@ import express from 'express'
 import morgan from 'morgan'
 import pkg from '../package.json'
 
-import {createRoles} from './libs/initialSetup';
-
-import productsRoutes from './routes/products.routes';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/users.routes';
 import countriesRoutes from './routes/countries.routes';
 import municipiosRoutes from './routes/municipios.routes';
 import departamentosRoutes from './routes/departamentos.routes';
-import tiposDocumentosRoutes from './routes/tiposDocumentos.routes';
+import documentTypesRoutes from './routes/documentTypes.routes';
+import gendersRoutes from './routes/genders.routes';
+import civilStatusesRoutes from './routes/civilStatuses.routes';
+import ethnicGroupsRoutes from './routes/ethnicGroups.routes';
 
 const app = express();
-createRoles();
 
 app.set('pkg', pkg);
 
@@ -29,12 +28,14 @@ app.get('/', (request, response) => {
     });
 })
 
-app.use('/api/products', productsRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/countries', countriesRoutes);
 app.use('/api/municipios', municipiosRoutes);
 app.use('/api/departamentos', departamentosRoutes);
-app.use('/api/tiposDocumentos', tiposDocumentosRoutes);
+app.use('/api/documentTypes', documentTypesRoutes);
+app.use('/api/genders', gendersRoutes);
+app.use('/api/civilStatuses', civilStatusesRoutes);
+app.use('/api/ethnicGroups', ethnicGroupsRoutes);
 
 export default app;

@@ -1,4 +1,3 @@
-import {ROLES} from '../models/Roles';
 import Users from '../models/Users';
 
 export const checkDuplicateUsernameOrEmail = async (request, response, next) => {
@@ -11,24 +10,4 @@ export const checkDuplicateUsernameOrEmail = async (request, response, next) => 
     
     next();
     
-}
-
-export const checkRolesExisted = (request, response, next) => {
-    
-    const roles = request.body.roles;
-    
-    if (roles) {
-
-        for (let i = 0; i < roles.length; i++) {
-            
-            if (!ROLES.includes(roles[i])) return response.status(400).json({
-                message: `Role ${roles[i]} does not exist`
-            })
-            
-        }
-        
-    }
-    
-    next();
-  
 }

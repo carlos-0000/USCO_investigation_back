@@ -1,26 +1,46 @@
 import Users from '../models/Users';
 import Roles from '../models/Roles';
-import User_Roles from '../models/User_Roles';
+import DocumentTypes from '../models/DocumentTypes';
+import Countries from '../models/Countries';
+import CivilStatuses from '../models/CivilStatuses';
+import Genders from '../models/Genders';
+import EthnicGroups from '../models/EthnicGroups';
 
 export const getUsers = async (request, response) => {
 
     const products = await Users.findAll({
         attributes: [
-            'id',
             'username',
             'email',
-            'nombres',
-            'apellidos',
-            'correoInstitucional',
-            'numeroDocumento',
-            'idCounty',
-            'createdAt',
-            'updatedAt'
+            'firstname',
+            'lastname',
+            'institutionalEmail',
+            'documentNumber',
         ],
         include: [{
-            model: User_Roles,
-            attributes: ['role_id'],
-            as: 'roles'
+            model: Roles,
+            attributes: ['id', 'name'],
+            as: 'role'
+        },{
+            model: DocumentTypes,
+            attributes: ['id', 'name'],
+            as: 'documentType'
+        },{
+            model: Countries,
+            attributes: ['id', 'name'],
+            as: 'country'
+        },{
+            model: CivilStatuses,
+            attributes: ['id', 'name'],
+            as: 'civilStatus'
+        },{
+            model: Genders,
+            attributes: ['id', 'name'],
+            as: 'gender'
+        },{
+            model: EthnicGroups,
+            attributes: ['id', 'name'],
+            as: 'ethnicGroup'
         }]
     });
 
@@ -30,28 +50,45 @@ export const getUsers = async (request, response) => {
 
 export const getUserById = async (request, response) => {
 
-    const product = await Users.findOne({
+    const user = await Users.findOne({
+        where: {id: request.params.userIdToGet},
         attributes: [
-            'id',
             'username',
             'email',
-            'nombres',
-            'apellidos',
-            'correoInstitucional',
-            'numeroDocumento',
-            'idCounty',
-            'createdAt',
-            'updatedAt'
+            'firstname',
+            'lastname',
+            'institutionalEmail',
+            'documentNumber',
         ],
-        where: {id: request.params.userIdToGet},
         include: [{
-            model: User_Roles,
-            attributes: ['role_id'],
-            as: 'roles'
+            model: Roles,
+            attributes: ['id', 'name'],
+            as: 'role'
+        },{
+            model: DocumentTypes,
+            attributes: ['id', 'name'],
+            as: 'documentType'
+        },{
+            model: Countries,
+            attributes: ['id', 'name'],
+            as: 'country'
+        },{
+            model: CivilStatuses,
+            attributes: ['id', 'name'],
+            as: 'civilStatus'
+        },{
+            model: Genders,
+            attributes: ['id', 'name'],
+            as: 'gender'
+        },{
+            model: EthnicGroups,
+            attributes: ['id', 'name'],
+            as: 'ethnicGroup'
         }]
     });
 
-    response.json(product);
+    if (user) response.json(user);
+    else response.status(400).json({message:`User with id ${request.params.userIdToGet} not found`});
     
 };
 

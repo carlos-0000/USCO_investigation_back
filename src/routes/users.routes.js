@@ -4,11 +4,9 @@ import {authJwt, verifySignUp} from '../middlewares';
 
 const router = Router();
 
-const {verifyToken, isModerator, isAdmin} = authJwt;
-const verifyAccess = [verifyToken, isAdmin, verifySignUp.checkRolesExisted, verifySignUp.checkDuplicateUsernameOrEmail]; 
+const {verifyToken, isAtLeastAdmin, isAtLeastModerator, isAtLeastSuperAdmin, isAtLeastUser} = authJwt;
 
-router.get('/', [verifyToken, isAdmin], userCtrl.getUsers);
-router.get('/:userIdToGet', [verifyToken, isAdmin], userCtrl.getUserById);
-router.post('/', verifyAccess, userCtrl.createUser);
+router.get('/', [verifyToken, isAtLeastAdmin], userCtrl.getUsers);
+router.get('/:userIdToGet', [verifyToken], userCtrl.getUserById);
 
 export default router;
