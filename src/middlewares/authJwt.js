@@ -2,8 +2,6 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 import Users from '../models/Users';
 import Roles, {ROLES} from '../models/Roles';
-import User_Roles from '../models/User_Roles';
-import DocumentTypes from '../models/DocumentTypes';
 
 export const verifyToken = async (request, response, next) => {
     
@@ -22,14 +20,13 @@ export const verifyToken = async (request, response, next) => {
         
     } catch (error) {
 
-        console.log({error});
-        return response.status(401).json({message: 'Unauthorized'});
+        return response.status(401).json({errorMessage: 'Unauthorized'});
         
     }
 
 }
 
-const hasAtLeastRole = async (request, response, next, roleName) => {
+    export const hasAtLeastRole = async (request, response, next, roleName) => {
     
     try {
         
@@ -49,13 +46,12 @@ const hasAtLeastRole = async (request, response, next, roleName) => {
         
         const roleToCheck = roles.filter(role => role['name'] === roleName)[0];
         
-        if (user.role['hierarchy'] >= roleToCheck['hierarchy']) next()
-        else return response.status(403);
+        if (user.role['hierarchy'] <= roleToCheck['hierarchy']) next();
+        else return response.status(401).json({errorMessage: 'Unauthorized'});
         
     } catch (error) {
 
-        console.log({error});
-        return response.status(401).json({message: 'Unauthorized'})
+        return response.status(401).json({errorMessage: 'Unauthorized'})
         
     }
 

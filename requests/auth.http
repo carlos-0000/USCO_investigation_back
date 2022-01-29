@@ -1,19 +1,22 @@
-### SignIn
-POST https://usco.protocolosweb.com/api/auth/signin
+### Login
+POST https://usco.protocolosweb.com/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "User name",
+  "documentNumber": "12345678901",
   "password": "password"
 }
 
-### SignUp
-POST https://usco.protocolosweb.com/api/auth/signup
+### Register
+POST https://usco.protocolosweb.com/api/auth/register
 Content-Type: application/json
 
 {
-  "documentNumber": 1234567890,
-  "email": "user2@domain.com",
+  "documentType_id": 1,
+  "documentNumber": "12345678907",
   "password": "password",
-  "documentType": ""
+  "firstname": "Manuel",
+  "lastname": "Vega",
+  "institutionalEmail": "manuelvega7@insitution.com",
+  "country_id": 49
 }

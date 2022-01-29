@@ -2,10 +2,10 @@ import {Router} from 'express';
 const router = Router();
 
 import * as authCtrl from '../controllers/auth.controller';
-import {verifySignUp} from '../middlewares';
-const {checkDuplicateUsernameOrEmail} = verifySignUp;
+import {documentNumberAlreadyExist, hasMinimumData, institutionalEmailAlreadyExist} from '../middlewares/users';
+const userAlreadyExist = [documentNumberAlreadyExist, institutionalEmailAlreadyExist];
 
-router.post('/signup', [checkDuplicateUsernameOrEmail], authCtrl.signUp);
-router.post('/signin', authCtrl.signIn);
+router.post('/register', [userAlreadyExist, hasMinimumData], authCtrl.register);
+router.post('/login', authCtrl.login);
 
 export default router;
