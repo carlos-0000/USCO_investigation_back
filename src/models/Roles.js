@@ -13,7 +13,7 @@ const Roles = db.define('Roles', {
     name: {type: DataTypes.STRING},
     hierarchy: {type: DataTypes.NUMBER},
     description: {type: DataTypes.STRING},
-    alias: {type: DataTypes.STRING}
+    label: {type: DataTypes.STRING}
     
 }, {
     
