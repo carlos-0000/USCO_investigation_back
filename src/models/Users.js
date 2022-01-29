@@ -11,7 +11,6 @@ import Countries from './Countries';
 
 const Users = db.define('Users', {
     
-    username: {type: DataTypes.STRING},
     email: {type: DataTypes.STRING},
     password: {type: DataTypes.STRING},
     firstname: {type: DataTypes.STRING},
@@ -24,6 +23,7 @@ const Users = db.define('Users', {
     civilStatus_id: {type: DataTypes.BIGINT},
     gender_id: {type: DataTypes.BIGINT},
     ethnicGroup_id: {type: DataTypes.BIGINT},
+    deleted: {type: DataTypes.BOOLEAN},
     
 }, {
     
@@ -53,5 +53,10 @@ Users.comparePassword = async (password, receivedPassword) => {
 
 };
 
+export const requiredData = [
+    'documentType_id',
+    'documentNumber',
+    'password'
+];
 
 export default Users;

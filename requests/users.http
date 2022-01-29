@@ -1,7 +1,31 @@
 ### Get all users
 GET https://usco.protocolosweb.com/api/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQzMjY0ODMzfQ.zJ_vMZh5EZ0SXAbdPcNo9sWY97GBM2RvE7ws8E9Pmv4
+Authorization: {{token_admin}}
 
 ### Get user by id
 GET https://usco.protocolosweb.com/api/users/{{userIdToGet}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQzMjY0ODMzfQ.zJ_vMZh5EZ0SXAbdPcNo9sWY97GBM2RvE7ws8E9Pmv4
+Authorization: {{token_admin}}
+
+### Create a user
+POST https://usco.protocolosweb.com/api/users/
+Authorization: {{token_admin}}
+Content-Type: application/json
+
+{
+  "documentNumber": "1313",
+  "documentType_id": 1,
+  "password": "contrasena"
+}
+
+### Update user by id
+PUT https://usco.protocolosweb.com/api/users/{{userIdToGet}}
+Authorization: {{token_admin}}
+Content-Type: application/json
+
+{
+  "gender_id": 1
+}
+
+### Delete user by id
+DELETE https://usco.protocolosweb.com/api/users/{{userIdToGet}}
+Authorization: {{token_admin}}
