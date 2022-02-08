@@ -33,7 +33,7 @@ export const getDepartamentos = async (request, response) => {
 
     const departamentos = await Municipios.findAll({
         attributes: ['codigoDepartamento', 'nombreDepartamento', 'nombreRegion'],
-        group: ['codigoDepartamento']
+        group: ['codigoDepartamento', 'nombreDepartamento', 'nombreRegion']
     });
 
     response.json(departamentos);
