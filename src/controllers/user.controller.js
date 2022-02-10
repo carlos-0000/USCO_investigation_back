@@ -11,20 +11,41 @@ const
     
     userAttributes = [
         'id',
-        'email',
+        'documentNumber',
         'firstname',
         'lastname',
+        'email',
         'institutionalEmail',
+        'city',
+        'codigoDepartamento',
+        'codigoMunicipio'
+    ],
+    
+    userColumns = [
+        'role_id',
+        'documentType_id',
         'documentNumber',
+        'password',
+        'firstname',
+        'lastname',
+        'email',
+        'institutionalEmail',
+        'country_id',
+        'city',
+        'codigoDepartamento',
+        'codigoMunicipio',
+        'ethnicGroup_id',
+        'gender_id',
+        'civilStatus_id'
     ],
     
     userIncludes = [
         {model: Roles,          attributes: ['id', 'label'],    as: 'role'},
         {model: DocumentTypes,  attributes: ['id', 'name'],     as: 'documentType'},
         {model: Countries,      attributes: ['id', 'name'],     as: 'country'},
-        {model: CivilStatuses,  attributes: ['id', 'name'],     as: 'civilStatus'},
+        {model: EthnicGroups,   attributes: ['id', 'name'],     as: 'ethnicGroup'},
         {model: Genders,        attributes: ['id', 'name'],     as: 'gender'},
-        {model: EthnicGroups,   attributes: ['id', 'name'],     as: 'ethnicGroup'}
+        {model: CivilStatuses,  attributes: ['id', 'name'],     as: 'civilStatus'}
     ];
 
 export const getUsers = async (request, response) => {
@@ -58,27 +79,16 @@ export const createUser = async (request, response) => {
 
         const build = Users.build({});
 
-        for (const column of [
-            'documentNumber',
-            'password',
-            'firstname',
-            'lastname',
-            'institutionalEmail',
-            'email',
-            'documentType_id',
-            'country_id',
-            'role_id',
-            'civilStatus_id',
-            'ethnicGroup_id',
-            'gender_id'
-        ]) {
+        for (const column of userColumns) {
+            
             if (request.body[column]) {
-                if (column === 'password') {
-                    build[column] = await Users.encryptPassword(request.body[column]);
-                } else {
-                    build[column] = request.body[column];
-                }
+                
+                build[column] = column === 'password' ? 
+                    await Users.encryptPassword(request.body[column]) : 
+                    request.body[column];
+                
             }
+            
         }
 
         const createdUser = await build.save();
@@ -108,27 +118,16 @@ export const updateUserById = async (request, response) => {
 
         const data = {};
 
-        for (const column of [
-            'documentNumber',
-            'password',
-            'firstname',
-            'lastname',
-            'institutionalEmail',
-            'email',
-            'documentType_id',
-            'country_id',
-            'role_id',
-            'civilStatus_id',
-            'ethnicGroup_id',
-            'gender_id'
-        ]) {
+        for (const column of userColumns) {
+
             if (request.body[column]) {
-                if (column === 'password') {
-                    data[column] = await Users.encryptPassword(request.body[column]);
-                } else {
-                    data[column] = request.body[column];
-                }
+
+                data[column] = column === 'password' ? 
+                    await Users.encryptPassword(request.body[column]) : 
+                    request.body[column];
+
             }
+
         }
         
         await Users.update(
@@ -162,7 +161,7 @@ export const deleteUserById = async (request, response) => {
         await Users.update(
             {deleted: true},
             {where: {id: request.params.userId}}
-        )
+        );
         
         response.status(200).json({message: `The user with id "${request.params.userId}" has been deleted successfully`});
         
