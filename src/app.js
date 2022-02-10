@@ -11,6 +11,7 @@ import documentTypesRoutes from './routes/documentTypes.routes';
 import gendersRoutes from './routes/genders.routes';
 import civilStatusesRoutes from './routes/civilStatuses.routes';
 import ethnicGroupsRoutes from './routes/ethnicGroups.routes';
+import rolesRoutes from './routes/roles.routes';
 
 const app = express();
 
@@ -37,5 +38,6 @@ app.use('/api/documentTypes', documentTypesRoutes);
 app.use('/api/genders', gendersRoutes);
 app.use('/api/civilStatuses', civilStatusesRoutes);
 app.use('/api/ethnicGroups', ethnicGroupsRoutes);
+app.use('/api/roles', rolesRoutes);
 
 export default app;

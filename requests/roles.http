@@ -1,0 +1,7 @@
+### Get all roles
+GET https://usco.protocolosweb.com/api/roles
+Authorization: {{token_user}}
+
+### Get role by id
+GET https://usco.protocolosweb.com/api/roles/{{roleId}}
+Authorization: {{token_user}}
