@@ -32,14 +32,9 @@ export const institutionalEmailAlreadyExist = async (request, response, next) =>
 
 export const isAdminOrOwner = async (request, response, next) => {
     
-    if (request.params.userId === request.userId) {
-        console.log('isAdminOrOwner if');
-        next();
-    }
-    else {
-        console.log('isAdminOrOwner else');
-        return isAtLeastAdmin(request, response, next);
-    }
+    if (Number(request.params.userId) === Number(request.userId)) next();
+    
+    else return isAtLeastAdmin(request, response, next);
 
 };
 
