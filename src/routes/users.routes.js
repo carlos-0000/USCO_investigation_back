@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import * as userCtrl from '../controllers/user.controller';
-import {authJwt} from '../middlewares';
+import {isAtLeastAdmin, verifyToken} from '../middlewares/auth';
 import {
     documentNumberAlreadyExist,
     hasMinimumData,

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from '../config';
-import Users from '../models/Users';
+import Users, {requiredData} from '../models/Users';
 import Roles, {ROLES} from '../models/Roles';
 
 export const verifyToken = async (request, response, next) => {
@@ -26,7 +26,7 @@ export const verifyToken = async (request, response, next) => {
 
 }
 
-    export const hasAtLeastRole = async (request, response, next, roleName) => {
+export const hasAtLeastRole = async (request, response, next, roleName) => {
     
     try {
         
@@ -61,3 +61,63 @@ export const isAtLeastSuperAdmin = async (request, response, next) => await hasA
 export const isAtLeastAdmin = async (request, response, next) => await hasAtLeastRole(request, response, next, ROLES['Admin']);
 export const isAtLeastModerator = async (request, response, next) => await hasAtLeastRole(request, response, next, ROLES['Moderator']);
 export const isAtLeastUser = async (request, response, next) => await hasAtLeastRole(request, response, next, ROLES['User']);
+
+export const hasMinimumData = async (request, response, next) => {
+
+    const pass = {}
+    requiredData.map(required => pass[required] = !!request.body[required]);
+
+    const missingData = Object.entries(pass).filter(data => (
+
+        data[1] === false &&
+        requiredData.includes(data[0])
+
+    ));
+
+    if (missingData.length) {
+
+        let missingDataStr = '';
+
+        missingData.forEach((data, index) => missingDataStr += '"' + data[0] + (
+
+            index !== missingData.length - 1 ? (index !== missingData.length - 2 ? '", ' : '" and ') : '"'
+
+        ));
+
+        return response.status(400).json({errorMessage: 'Missing data: ' + missingDataStr});
+
+    }
+
+    next();
+
+};
+
+export const userExists = async (request, response, next) => {
+
+    const user = await Users.findOne({
+        attributes: ['id'],
+        where: {documentNumber: request.body.documentNumber}
+    });
+
+    if (user) next();
+
+    else return response.status(404).json({
+        errorMessage: `No user found with document number "${request.body.documentNumber}"`
+    });
+
+};
+
+export const userIsNotDeleted = async (request, response, next) => {
+
+    const user = await Users.findOne({
+        attributes: ['deleted'],
+        where: {documentNumber: request.body.documentNumber}
+    });
+
+    if (!user.deleted) next();
+
+    else return response.status(404).json({
+        errorMessage: `The user with document number "${request.params.userId}" has been previously deleted`
+    });
+
+};

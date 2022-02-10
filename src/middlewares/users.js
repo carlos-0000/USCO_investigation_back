@@ -1,5 +1,5 @@
 import Users, {requiredData} from '../models/Users';
-import {isAtLeastAdmin} from './authJwt';
+import {isAtLeastAdmin} from './auth';
 
 const dataInColumnAlreadyExist = async (request, response, next, data, column) => {
     
