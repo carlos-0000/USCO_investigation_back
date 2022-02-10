@@ -24,7 +24,8 @@ export const register = async (request, response) => {
             documentType_id,
             documentNumber,
             country_id,
-            password: await Users.encryptPassword(password)
+            password: await Users.encryptPassword(password),
+            role_id: 2 // default
         });
 
         const token = jwt.sign(
