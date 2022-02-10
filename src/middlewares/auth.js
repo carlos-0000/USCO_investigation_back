@@ -102,6 +102,7 @@ export const userExists = async (request, response, next) => {
     if (user) next();
 
     else return response.status(404).json({
+        errorName: 'NOT_FOUND',
         errorMessage: `No user found with document number "${request.body.documentNumber}"`
     });
 
@@ -117,6 +118,7 @@ export const userIsNotDeleted = async (request, response, next) => {
     if (!user.deleted) next();
 
     else return response.status(404).json({
+        errorName: 'DELETED',
         errorMessage: `The user with document number "${request.params.userId}" has been previously deleted`
     });
 

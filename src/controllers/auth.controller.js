@@ -71,7 +71,10 @@ export const login = async (request, response) => {
     if (!userFound) return response.status(400).json({errorMessage: `User with document number "${request.body.documentNumber}" not found`});
     
     const matchPassword = await Users.comparePassword(request.body.password, userFound.password);
-    if (!matchPassword) return response.status(401).json({token: null, message: 'Invalid password'});
+    if (!matchPassword) return response.status(401).json({
+        errorName: 'UNAUTHORIZED', 
+        errorMessage: 'Invalid password'
+    });
 
     const token = jwt.sign(
         {id: userFound.id},
