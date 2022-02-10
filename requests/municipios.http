@@ -1,7 +1,7 @@
 ### Get all municipios
 GET https://usco.protocolosweb.com/api/municipios
 
-### Get municipio by id
+### Get municipio by codigoMunicipio
 GET https://usco.protocolosweb.com/api/municipios/{{codigoMunicipio}}
 
 ### Get all departamentos
