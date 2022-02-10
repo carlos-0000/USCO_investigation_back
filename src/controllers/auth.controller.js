@@ -39,7 +39,7 @@ export const register = async (request, response) => {
             where: {id: savedUser.role_id}
         });
 
-        response.json({
+        response.status(201).json({
             token,
             id: savedUser.id,
             role,
