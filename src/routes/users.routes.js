@@ -11,8 +11,6 @@ import {
 
 const router = Router();
 
-const {verifyToken, isAtLeastAdmin} = authJwt;
-
 router.get('/', [verifyToken, isAtLeastAdmin], userCtrl.getUsers);
 router.get('/:userId', [verifyToken, isAdminOrOwner, userIsNotDeleted], userCtrl.getUserById);
 router.post('/', [verifyToken, isAtLeastAdmin, hasMinimumData, documentNumberAlreadyExist], userCtrl.createUser);
