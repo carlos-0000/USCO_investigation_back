@@ -12,6 +12,7 @@ import gendersRoutes from './routes/genders.routes';
 import civilStatusesRoutes from './routes/civilStatuses.routes';
 import ethnicGroupsRoutes from './routes/ethnicGroups.routes';
 import rolesRoutes from './routes/roles.routes';
+import {educationalEntitiesRouter, noEducationalEntitiesRouter} from './routes/entities.routes';
 
 const app = express();
 
@@ -39,5 +40,7 @@ app.use('/api/genders', gendersRoutes);
 app.use('/api/civilStatuses', civilStatusesRoutes);
 app.use('/api/ethnicGroups', ethnicGroupsRoutes);
 app.use('/api/roles', rolesRoutes);
+app.use('/api/educationalEntities', educationalEntitiesRouter);
+app.use('/api/nonEducationalEntities', noEducationalEntitiesRouter);
 
 export default app;
