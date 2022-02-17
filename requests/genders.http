@@ -2,4 +2,4 @@
 GET https://usco.protocolosweb.com/api/genders
 
 ### Get gender by id
-GET https://usco.protocolosweb.com/api/genders/{{genderId}}
+GET https://usco.protocolosweb.com/api/genders/{{gender_id}}

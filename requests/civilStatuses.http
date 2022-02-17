@@ -2,4 +2,4 @@
 GET https://usco.protocolosweb.com/api/civilStatuses
 
 ### Get civil status by id
-GET https://usco.protocolosweb.com/api/civilStatuses/{{civilStatusId}}
+GET https://usco.protocolosweb.com/api/civilStatuses/{{civilStatus_id}}

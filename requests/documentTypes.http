@@ -2,4 +2,4 @@
 GET https://usco.protocolosweb.com/api/documentTypes
 
 ### Get document type by id
-GET https://usco.protocolosweb.com/api/documentTypes/{{documentTypeId}}
+GET https://usco.protocolosweb.com/api/documentTypes/{{documentType_id}}

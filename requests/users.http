@@ -3,7 +3,7 @@ GET https://usco.protocolosweb.com/api/users
 Authorization: {{token_admin}}
 
 ### Get user by id
-GET https://usco.protocolosweb.com/api/users/{{userIdToGet}}
+GET https://usco.protocolosweb.com/api/users/{{user_id}}
 Authorization: {{token_admin}}
 
 ### Create a user
@@ -18,14 +18,14 @@ Content-Type: application/json
 }
 
 ### Update user by id
-PUT https://usco.protocolosweb.com/api/users/{{userIdToGet}}
+PUT https://usco.protocolosweb.com/api/users/{{user_id}}
 Authorization: {{token_admin}}
 Content-Type: application/json
 
 {
-  "gender_id": 1
+  "municipio_id": {{municipio_id}}
 }
 
 ### Delete user by id
-DELETE https://usco.protocolosweb.com/api/users/{{userIdToGet}}
+DELETE https://usco.protocolosweb.com/api/users/{{user_id}}
 Authorization: {{token_admin}}

@@ -2,4 +2,4 @@
 GET https://usco.protocolosweb.com/api/countries
 
 ### Get country by id
-GET https://usco.protocolosweb.com/api/countries/{{countryId}}
+GET https://usco.protocolosweb.com/api/countries/{{country_id}}
