@@ -1,16 +1,9 @@
 import {Router} from 'express';
 const router = Router();
 
-import * as municipiosCtrl from '../controllers/municipios.controller'
-// import {authJwt} from '../middlewares';
+import {getMunicipioById, getMunicipios} from '../controllers/municipios.controller';
 
-// const {verifyToken} = authJwt;
-// const verifyAccess = [verifyToken];
-
-// router.post('/', verifyAccess, municipiosCtrl.createCountries);
-router.get('/', municipiosCtrl.getMunicipios);
-router.get('/:codigoMunicipio', municipiosCtrl.getMunicipioByCodigo);
-// router.put('/:productId', verifyAccess, municipiosCtrl.updateProductById);
-// router.delete('/:productId', verifyAccess, municipiosCtrl.deleteProductById);
+router.get('/', getMunicipios);
+router.get('/:municipioId', getMunicipioById);
 
 export default router;

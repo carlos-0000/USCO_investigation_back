@@ -1,0 +1,5 @@
+### Get all departamentos
+GET https://usco.protocolosweb.com/api/departamentos
+
+### Get departamento by id
+GET https://usco.protocolosweb.com/api/departamentos/{{departamento_id}}

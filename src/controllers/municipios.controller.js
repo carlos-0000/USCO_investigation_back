@@ -1,52 +1,42 @@
 import Municipios from '../models/Municipios';
+import Departamentos from '../models/Departamentos';
+
+const
+
+    municipiosAttributes = ['id', 'name', 'code'],
+    municipiosIncludes = [{model: Departamentos, attributes: ['id', 'name', 'code', 'region_id'], as: 'departamento'}];
 
 export const getMunicipios = async (request, response) => {
     
-    const municipios = await Municipios.findAll();
+    const municipios = await Municipios.findAll({
+        attributes: municipiosAttributes,
+        include: municipiosIncludes
+    });
     
     response.json(municipios);
 
 }
 
-export const getMunicipioByCodigo = async (request, response) => {
+export const getMunicipioById = async (request, response) => {
 
     const municipio = await Municipios.findOne({
-        where: {codigoMunicipio: request.params['codigoMunicipio']}
+        attributes: municipiosAttributes,
+        include: municipiosIncludes,
+        where: {id: request.params['municipioId']}
     });
     
     response.status(200).json(municipio);
 
 }
 
-export const getMunicipiosByDepartamento = async (request, response) => {
+export const getMunicipiosByDepartamentoId = async (request, response) => {
 
     const municipios = await Municipios.findAll({
-        attributes: ['codigoMunicipio', 'nombreMunicipio'],
-        where: {codigoDepartamento: request.params['codigoDepartamento']}
+        attributes: municipiosAttributes,
+        include: municipiosIncludes,
+        where: {departamento_id: request.params['departamentoId']}
     });
     
     response.status(200).json(municipios);
-
-}
-
-export const getDepartamentos = async (request, response) => {
-
-    const departamentos = await Municipios.findAll({
-        attributes: ['codigoDepartamento', 'nombreDepartamento', 'nombreRegion'],
-        group: ['codigoDepartamento', 'nombreDepartamento', 'nombreRegion']
-    });
-
-    response.json(departamentos);
-
-}
-
-export const getDepartamentoByCodigo = async (request, response) => {
-
-    const departamentos = await Municipios.findOne({
-        attributes: ['codigoDepartamento', 'nombreDepartamento', 'nombreRegion'],
-        where: {codigoDepartamento: request.params['codigoDepartamento']}
-    });
-
-    response.json(departamentos);
 
 }

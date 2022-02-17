@@ -1,22 +1,22 @@
 import {DataTypes} from 'sequelize';
 import db from '../database';
+import Departamentos from './Departamentos';
 
 const Municipios = db.define('Municipios', {
     
-    nombreMunicipio: {type: DataTypes.STRING},
-    codigoMunicipio: {type: DataTypes.NUMBER},
-    nombreDepartamento: {type: DataTypes.STRING},
-    codigoDepartamento: {type: DataTypes.NUMBER},
-    nombreRegion: {type: DataTypes.STRING}
+    name:             {type: DataTypes.STRING},
+    code:             {type: DataTypes.INTEGER},
+    departamento_id:    {type: DataTypes.BIGINT},
     
 }, {
     
     version: false,
-    // don't add the timestamp attributes (updatedAt, createdAt)
     timestamps: false,
     createdAt: false,
-    updatedAt: false,
+    updatedAt: false
     
 });
+
+Municipios.belongsTo(Departamentos, {as: 'departamento', foreignKey: 'departamento_id'})
 
 export default Municipios;

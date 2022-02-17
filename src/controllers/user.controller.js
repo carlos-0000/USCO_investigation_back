@@ -6,10 +6,11 @@ import CivilStatuses from '../models/CivilStatuses';
 import Genders from '../models/Genders';
 import EthnicGroups from '../models/EthnicGroups';
 import {Op} from 'sequelize';
+import Municipios from '../models/Municipios';
 
 const 
     
-    userAttributes = [
+    userAttributes = [ // For queries
         'id',
         'documentNumber',
         'firstname',
@@ -17,11 +18,9 @@ const
         'email',
         'institutionalEmail',
         'city',
-        'codigoDepartamento',
-        'codigoMunicipio'
     ],
     
-    userColumns = [
+    userColumns = [ // From request
         'role_id',
         'documentType_id',
         'documentNumber',
@@ -32,20 +31,20 @@ const
         'institutionalEmail',
         'country_id',
         'city',
-        'codigoDepartamento',
-        'codigoMunicipio',
+        'municipio_id',
         'ethnicGroup_id',
         'gender_id',
         'civilStatus_id'
     ],
     
     userIncludes = [
-        {model: Roles,          attributes: ['id', 'label'],    as: 'role'},
-        {model: DocumentTypes,  attributes: ['id', 'name'],     as: 'documentType'},
-        {model: Countries,      attributes: ['id', 'name'],     as: 'country'},
-        {model: EthnicGroups,   attributes: ['id', 'name'],     as: 'ethnicGroup'},
-        {model: Genders,        attributes: ['id', 'name'],     as: 'gender'},
-        {model: CivilStatuses,  attributes: ['id', 'name'],     as: 'civilStatus'}
+        {model: Roles,          attributes: ['id', 'label'],        as: 'role'},
+        {model: DocumentTypes,  attributes: ['id', 'name'],         as: 'documentType'},
+        {model: Countries,      attributes: ['id', 'name'],         as: 'country'},
+        {model: EthnicGroups,   attributes: ['id', 'name'],         as: 'ethnicGroup'},
+        {model: Genders,        attributes: ['id', 'name'],         as: 'gender'},
+        {model: CivilStatuses,  attributes: ['id', 'name'],         as: 'civilStatus'},
+        {model: Municipios,     attributes: ['id', 'name', 'code'], as: 'municipio'}
     ];
 
 export const getUsers = async (request, response) => {

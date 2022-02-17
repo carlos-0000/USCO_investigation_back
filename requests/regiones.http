@@ -1,0 +1,5 @@
+### Get all regiones
+GET https://usco.protocolosweb.com/api/regiones
+
+### Get region by id
+GET https://usco.protocolosweb.com/api/regiones/{{region_id}}
