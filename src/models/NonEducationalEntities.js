@@ -1,18 +1,16 @@
 import db from '../database';
 import {DataTypes} from 'sequelize';
 import Countries from './Countries';
+import Municipios from './Municipios';
 
-const Entities = db.define('Entities', {
+const NonEducationalEntities = db.define('NonEducationalEntities', {
     
     name:               {type: DataTypes.STRING},
     nit:                {type: DataTypes.STRING},
-    foundationYear:     {type: DataTypes.INTEGER},
     company:            {type: DataTypes.STRING},
     country_id:         {type: DataTypes.BIGINT},
-    codigoDepartamento: {type: DataTypes.INTEGER},
-    codigoMunicipio:    {type: DataTypes.INTEGER},
+    municipio_id:       {type: DataTypes.BIGINT},
     city:               {type: DataTypes.STRING},
-    isEducational:      {type: DataTypes.BOOLEAN},
     inactive:           {type: DataTypes.BOOLEAN},
     deleted:            {type: DataTypes.BOOLEAN}
     
@@ -25,6 +23,7 @@ const Entities = db.define('Entities', {
     
 });
 
-Entities.belongsTo(Countries,      {foreignKey: 'country_id', as: 'country'});
+NonEducationalEntities.belongsTo(Countries, {as: 'country', foreignKey: 'country_id'});
+NonEducationalEntities.belongsTo(Municipios, {as: 'municipio', foreignKey: 'municipio_id'});
 
-export default Entities;
+export default NonEducationalEntities;

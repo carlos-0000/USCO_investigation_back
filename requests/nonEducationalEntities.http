@@ -3,7 +3,7 @@ GET https://usco.protocolosweb.com/api/nonEducationalEntities
 Authorization: {{token_admin}}
 
 ### Get non educational entity by id
-GET https://usco.protocolosweb.com/api/nonEducationalEntities/{{entityIdToGet}}
+GET https://usco.protocolosweb.com/api/nonEducationalEntities/{{educationalEntity_id}}
 Authorization: {{token_admin}}
 
 ### Create a non educational entity
@@ -15,14 +15,13 @@ Content-Type: application/json
   "name":  "USCO",
   "nit":  "1234",
   "company":  "USCO",
-  "country_id":  49,
-  "codigoDepartamento":  41,
-  "codigoMunicipio":  41001,
-  "city": "Neiva"
+  "country_id":  {{country_id}},
+  "municipio_id":  {{municipio_id}},
+  "city": "{{city}}"
 }
 
 ### Update non educational entity by id
-PUT https://usco.protocolosweb.com/api/nonEducationalEntities/{{entityIdToGet}}
+PUT https://usco.protocolosweb.com/api/nonEducationalEntities/{{educationalEntity_id}}
 Authorization: {{token_admin}}
 Content-Type: application/json
 
@@ -31,5 +30,5 @@ Content-Type: application/json
 }
 
 ### Delete non educational entity by id
-DELETE https://usco.protocolosweb.com/api/nonEducationalEntities/{{entityIdToGet}}
+DELETE https://usco.protocolosweb.com/api/nonEducationalEntities/{{educationalEntity_id}}
 Authorization: {{token_admin}}
