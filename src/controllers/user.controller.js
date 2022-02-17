@@ -162,7 +162,9 @@ export const deleteUserById = async (request, response) => {
             {where: {id: request.params.userId}}
         );
         
-        response.status(200).json({message: `The user with id "${request.params.userId}" has been deleted successfully`});
+        response.status(200).json({
+            message: 'The user with id "' + request.params.userId + '" has been flagged as deleted successfully'
+        });
         
     } catch (error) {
 
