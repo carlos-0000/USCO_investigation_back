@@ -15,6 +15,8 @@ import ethnicGroupsRoutes from './routes/ethnicGroups.routes';
 import rolesRoutes from './routes/roles.routes';
 import educationalEntitiesRouter from './routes/educationalEntities.routes';
 import nonEducationalEntitiesRoutes from './routes/nonEducationalEntities.routes';
+import facultiesRoutes from './routes/faculties.routes';
+import nonEducationalAreasRoutes from './routes/nonEducationalAreas.routes';
 
 const app = express();
 
@@ -50,5 +52,7 @@ app.use('/api/roles', rolesRoutes);
 
 app.use('/api/educationalEntities', educationalEntitiesRouter);
 app.use('/api/nonEducationalEntities', nonEducationalEntitiesRoutes);
+app.use('/api/faculties', facultiesRoutes);
+app.use('/api/nonEducationalAreas', nonEducationalAreasRoutes);
 
 export default app;

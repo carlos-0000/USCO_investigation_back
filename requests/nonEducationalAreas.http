@@ -1,0 +1,32 @@
+### Get all non-educational areas
+GET https://usco.protocolosweb.com/api/nonEducationalAreas
+Authorization: {{token_admin}}
+
+### Get non-educational area by id
+GET https://usco.protocolosweb.com/api/nonEducationalAreas/{{nonEducationalArea_id}}
+Authorization: {{token_admin}}
+
+### Create a non-educational area
+POST https://usco.protocolosweb.com/api/nonEducationalAreas/
+Authorization: {{token_admin}}
+Content-Type: application/json
+
+{
+  "name":  "Tienda de Don Chucho",
+  "nonEducationalEntity_id":  {{nonEducationalEntity_id}},
+  "municipio_id":  {{municipio_id}},
+  "city": "Neiva"
+}
+
+### Update non-educational area by id
+PUT https://usco.protocolosweb.com/api/nonEducationalAreas/{{nonEducationalEntity_id}}
+Authorization: {{token_admin}}
+Content-Type: application/json
+
+{
+  "name":  "Software_edit"
+}
+
+### Delete non-educational area by id
+DELETE https://usco.protocolosweb.com/api/nonEducationalAreas/{{nonEducationalEntity_id}}
+Authorization: {{token_admin}}

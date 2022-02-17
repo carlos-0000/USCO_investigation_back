@@ -1,0 +1,32 @@
+### Get all faculties
+GET https://usco.protocolosweb.com/api/faculties
+Authorization: {{token_admin}}
+
+### Get faculty by id
+GET https://usco.protocolosweb.com/api/faculties/{{faculty_id}}
+Authorization: {{token_admin}}
+
+### Create a faculty
+POST https://usco.protocolosweb.com/api/faculties/
+Authorization: {{token_admin}}
+Content-Type: application/json
+
+{
+  "name":  "Software",
+  "educationalEntity_id":  {{educationalEntity_id}},
+  "municipio_id":  {{municipio_id}},
+  "city": "Neiva"
+}
+
+### Update faculty by id
+PUT https://usco.protocolosweb.com/api/faculties/{{educationalEntity_id}}
+Authorization: {{token_admin}}
+Content-Type: application/json
+
+{
+  "name":  "Software_edit"
+}
+
+### Delete faculty by id
+DELETE https://usco.protocolosweb.com/api/faculties/{{educationalEntity_id}}
+Authorization: {{token_admin}}
