@@ -22,8 +22,8 @@ const
     ],
     
     facultiesIncludes = [
-        {model: EducationalEntities,    attributes: ['id', 'name'],         as: 'educationalEntity'},
-        {model: Municipios,             attributes: ['id', 'name', 'code'], as: 'municipio'}
+        {model: EducationalEntities,    attributes: ['id', 'name'],                             as: 'educationalEntity'},
+        {model: Municipios,             attributes: ['id', 'name', 'code', 'departamento_id'],  as: 'municipio'}
     ];
 
 export const getFaculties = async (request, response) => {

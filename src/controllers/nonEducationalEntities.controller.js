@@ -23,8 +23,8 @@ const
     ],
     
     nonEducationalEntitiesIncludes = [
-        {model: Countries, attributes: ['id', 'name'], as: 'country'},
-        {model: Municipios, attributes: ['id', 'name', 'code'], as: 'municipio'},
+        {model: Countries,  attributes: ['id', 'name'],                             as: 'country'},
+        {model: Municipios, attributes: ['id', 'name', 'code', 'departamento_id'],  as: 'municipio'}
     ];
 
 export const getNonEducationalEntities = async (request, response) => {

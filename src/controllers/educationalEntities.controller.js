@@ -23,8 +23,8 @@ const
     ],
     
     educationalEntitiesIncludes = [
-        {model: Countries, attributes: ['id', 'name'], as: 'country'},
-        {model: Municipios, attributes: ['id', 'name', 'code'], as: 'municipio'},
+        {model: Countries,  attributes: ['id', 'name'],                             as: 'country'},
+        {model: Municipios, attributes: ['id', 'name', 'code', 'departamento_id'],  as: 'municipio'}
     ];
 
 export const getEducationalEntities = async (request, response) => {

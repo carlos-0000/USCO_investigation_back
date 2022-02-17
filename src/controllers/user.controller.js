@@ -38,13 +38,13 @@ const
     ],
     
     userIncludes = [
-        {model: Roles,          attributes: ['id', 'label'],        as: 'role'},
-        {model: DocumentTypes,  attributes: ['id', 'name'],         as: 'documentType'},
-        {model: Countries,      attributes: ['id', 'name'],         as: 'country'},
-        {model: EthnicGroups,   attributes: ['id', 'name'],         as: 'ethnicGroup'},
-        {model: Genders,        attributes: ['id', 'name'],         as: 'gender'},
-        {model: CivilStatuses,  attributes: ['id', 'name'],         as: 'civilStatus'},
-        {model: Municipios,     attributes: ['id', 'name', 'code'], as: 'municipio'}
+        {model: Roles,          attributes: ['id', 'label'],                            as: 'role'},
+        {model: DocumentTypes,  attributes: ['id', 'name'],                             as: 'documentType'},
+        {model: Countries,      attributes: ['id', 'name'],                             as: 'country'},
+        {model: EthnicGroups,   attributes: ['id', 'name'],                             as: 'ethnicGroup'},
+        {model: Genders,        attributes: ['id', 'name'],                             as: 'gender'},
+        {model: CivilStatuses,  attributes: ['id', 'name'],                             as: 'civilStatus'},
+        {model: Municipios,     attributes: ['id', 'name', 'code', 'departamento_id'],  as: 'municipio'}
     ];
 
 export const getUsers = async (request, response) => {
